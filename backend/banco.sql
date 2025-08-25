@@ -7,9 +7,11 @@ create table crud_policiais(
     rg_militar varchar(20) NOT NULL UNIQUE,
     cpf varchar(14) NOT NULL UNIQUE,
     data_nascimento date NOT NULL,
-    matricula varchar(255) NOT NULL
+    matricula varchar(50) NOT NULL
 );
 
+-- Limpar dados existentes e inserir novos
+DELETE FROM crud_policiais;
 
 INSERT INTO crud_policiais (rg_civil, rg_militar, cpf, data_nascimento, matricula) VALUES
 ('12.345.678-9', '82247', '123.456.789-01', '1985-03-15', 'PM2024001'),
