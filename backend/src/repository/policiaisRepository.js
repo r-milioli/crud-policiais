@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const bcrypt = require('bcryptjs');
 
 const getAllPoliciais = () => {
     const sql = 'SELECT * FROM crud_policiais';
@@ -47,8 +48,12 @@ const findPolicialByRGMilitar = (rgMilitar) => {
 };
 
 const createPolicial = (policial) => {
+    
+    const saltRounds = 10;
+    const matriculaCriptografada = bcrypt.hashSync(policial.matricula, saltRounds);
+    
     const sql = 'INSERT INTO crud_policiais (rg_civil, rg_militar, cpf, data_nascimento, matricula) VALUES (?, ?, ?, ?, ?)';
-    return db.query(sql, [policial.rg_civil, policial.rg_militar, policial.cpf, policial.data_nascimento, policial.matricula], (err, results) => {
+    return db.query(sql, [policial.rg_civil, policial.rg_militar, policial.cpf, policial.data_nascimento, matriculaCriptografada], (err, results) => {
         if (err) {
             console.error('Erro ao criar policial: ', err);
             return null;
@@ -57,10 +62,13 @@ const createPolicial = (policial) => {
     });
 };
 
+
+
 module.exports = {
     getAllPoliciais,
     findPolicialByCPF,
     findPolicialByRGCivil,
     findPolicialByRGMilitar,
     createPolicial
+    
 };
