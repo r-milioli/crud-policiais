@@ -2,7 +2,7 @@
   <h2>Cadastrar Policial</h2>
   
   <form (ngSubmit)="cadastrar()" #form="ngForm">
-    <div class="form-group">
+    <div class="form-grupo">
       <label for="rg_civil">RG Civil:</label>
       <input 
         type="text" 
@@ -13,7 +13,7 @@
         placeholder="XX.XXX.XXX-X">
     </div>
 
-    <div class="form-group">
+    <div class="form-grupo">
       <label for="rg_militar">RG Militar:</label>
       <input 
         type="text" 
@@ -24,7 +24,7 @@
         placeholder="XXXXX">
     </div>
 
-    <div class="form-group">
+    <div class="form-grupo">
       <label for="cpf">CPF:</label>
       <input 
         type="text" 
@@ -35,7 +35,7 @@
         placeholder="XXX.XXX.XXX-XX">
     </div>
 
-    <div class="form-group">
+    <div class="form-grupo">
       <label for="data_nascimento">Data de Nascimento:</label>
       <input 
         type="date" 
@@ -45,7 +45,7 @@
         required>
     </div>
 
-    <div class="form-group">
+    <div class="form-grupo">
       <label for="matricula">Matrícula:</label>
       <input 
         type="text" 
@@ -56,7 +56,7 @@
         placeholder="PM2024XXX">
     </div>
 
-    <button type="submit" [disabled]="!form.form.valid || carregando">
+    <button type="submit" class="btn-cadastrar" [disabled]="!form.form.valid || carregando">
       {{ carregando ? 'Cadastrando...' : 'Cadastrar Policial' }}
     </button>
   </form>

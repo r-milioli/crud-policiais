@@ -39,20 +39,48 @@ export class ListagemPoliciaisComponent implements OnInit {
     });
   }
 
-  aplicarFiltro() {
-    if (this.filtroCPF) {
-      this.policiaisService.buscarPorCPF(this.filtroCPF).subscribe({
-        next: (data) => this.policiais = data,
-        error: (error) => this.erro = 'Erro ao filtrar por CPF'
-      });
-    } else if (this.filtroRG) {
-      this.policiaisService.buscarPorRG(this.filtroRG).subscribe({
-        next: (data) => this.policiais = data,
-        error: (error) => this.erro = 'Erro ao filtrar por RG'
+  aplicarFiltroCPF() {
+    if (this.filtroCPF.trim()) {
+      this.carregando = true;
+      this.erro = '';
+      this.policiaisService.buscarPorCPF(this.filtroCPF.trim()).subscribe({
+        next: (data) => {
+          this.policiais = data;
+          this.carregando = false;
+        },
+        error: (error) => {
+          this.erro = 'Erro ao filtrar por CPF';
+          this.carregando = false;
+        }
       });
     } else {
       this.carregarPoliciais();
     }
+  }
+
+  aplicarFiltroRG() {
+    if (this.filtroRG.trim()) {
+      this.carregando = true;
+      this.erro = '';
+      this.policiaisService.buscarPorRG(this.filtroRG.trim()).subscribe({
+        next: (data) => {
+          this.policiais = data;
+          this.carregando = false;
+        },
+        error: (error) => {
+          this.erro = 'Erro ao filtrar por RG';
+          this.carregando = false;
+        }
+      });
+    } else {
+      this.carregarPoliciais();
+    }
+  }
+
+  limparFiltros() {
+    this.filtroCPF = '';
+    this.filtroRG = '';
+    this.carregarPoliciais();
   }
 
   formatarData(data: string): string {

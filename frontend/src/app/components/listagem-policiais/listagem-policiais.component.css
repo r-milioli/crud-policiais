@@ -3,48 +3,94 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 100%;
 }
 
 .filtros {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 15px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
-.filtros input {
+.filtro-grupo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.filtro-grupo input {
   flex: 1;
-  min-width: 200px;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
+  min-width: 0;
 }
 
-.filtros input:focus {
+.filtro-grupo input:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
-.filtros button {
-  background: #28a745;
+.filtro-grupo button {
+  background: #007bff;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
+  font-size: 14px;
+  min-width: 100px;
 }
 
-.filtros button:hover {
+.filtro-grupo button:hover {
+  background: #0056b3;
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.botoes button {
+  background: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  flex: 1;
+  max-width: 200px;
+}
+
+.botoes button:hover {
   background: #218838;
+}
+
+.botoes button.limpar {
+  background: #6c757d;
+}
+
+.botoes button.limpar:hover {
+  background: #545b62;
 }
 
 .policiais-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+  width: 100%;
 }
 
 .policial-card {
@@ -90,17 +136,140 @@
   border: 1px solid #f5c6cb;
 }
 
-/* Responsividade */
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+  .listagem-container {
+    padding: 15px;
+  }
+  
+  .filtro-grupo {
+    gap: 8px;
+  }
+  
+  .filtro-grupo input {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .filtro-grupo button {
+    padding: 10px 15px;
+    font-size: 13px;
+    min-width: 80px;
+  }
+  
+  .botoes button {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+}
+
+/* Responsividade para dispositivos móveis */
 @media (max-width: 768px) {
+  .listagem-container {
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
   .filtros {
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .filtro-grupo {
     flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .filtro-grupo input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+  }
+  
+  .filtro-grupo input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+  
+  .filtro-grupo button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    min-width: auto;
+    font-weight: 600;
+  }
+  
+  .botoes {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .botoes button {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    max-width: none;
+    font-weight: 600;
   }
   
   .policiais-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
   
+  .policial-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+  
+  .policial-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .policial-card p {
+    font-size: 15px;
+    margin: 8px 0;
+  }
+}
+
+/* Responsividade para dispositivos muito pequenos */
+@media (max-width: 480px) {
   .listagem-container {
-    padding: 15px;
+    padding: 8px;
+  }
+  
+  .filtro-grupo input {
+    padding: 18px;
+    font-size: 18px;
+  }
+  
+  .filtro-grupo button {
+    padding: 18px;
+    font-size: 18px;
+  }
+  
+  .botoes button {
+    padding: 18px;
+    font-size: 18px;
+  }
+  
+  .policial-card {
+    padding: 25px;
+  }
+  
+  .policial-card h3 {
+    font-size: 1.4rem;
+  }
+  
+  .policial-card p {
+    font-size: 16px;
   }
 }
