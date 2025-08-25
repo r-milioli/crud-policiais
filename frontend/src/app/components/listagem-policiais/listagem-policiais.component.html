@@ -1,0 +1,42 @@
+<div class="listagem-container">
+  <h2>Listagem de Policiais</h2>
+  
+  <div class="filtros">
+    <input 
+      type="text" 
+      [(ngModel)]="filtroCPF" 
+      placeholder="Filtrar por CPF"
+      (input)="aplicarFiltro()">
+    
+    <input 
+      type="text" 
+      [(ngModel)]="filtroRG" 
+      placeholder="Filtrar por RG"
+      (input)="aplicarFiltro()">
+    
+    <button (click)="carregarPoliciais()">Atualizar</button>
+  </div>
+
+  <div *ngIf="carregando" class="carregando">
+    Carregando...
+  </div>
+
+  <div *ngIf="!carregando && policiais.length === 0" class="sem-dados">
+    Nenhum policial encontrado.
+  </div>
+
+  <div class="policiais-grid" *ngIf="!carregando && policiais.length > 0">
+    <div class="policial-card" *ngFor="let policial of policiais">
+      <h3>Policial #{{ policial.id }}</h3>
+      <p><strong>RG Civil:</strong> {{ policial.rg_civil }}</p>
+      <p><strong>RG Militar:</strong> {{ policial.rg_militar }}</p>
+      <p><strong>CPF:</strong> {{ policial.cpf }}</p>
+      <p><strong>Data Nascimento:</strong> {{ formatarData(policial.data_nascimento) }}</p>
+      <p><strong>Matrícula:</strong> {{ policial.matricula }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="erro" class="erro">
+    {{ erro }}
+  </div>
+</div>

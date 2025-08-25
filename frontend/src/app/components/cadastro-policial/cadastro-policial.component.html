@@ -1,0 +1,67 @@
+<div class="cadastro-container">
+  <h2>Cadastrar Policial</h2>
+  
+  <form (ngSubmit)="cadastrar()" #form="ngForm">
+    <div class="form-group">
+      <label for="rg_civil">RG Civil:</label>
+      <input 
+        type="text" 
+        id="rg_civil" 
+        name="rg_civil"
+        [(ngModel)]="policial.rg_civil" 
+        required
+        placeholder="XX.XXX.XXX-X">
+    </div>
+
+    <div class="form-group">
+      <label for="rg_militar">RG Militar:</label>
+      <input 
+        type="text" 
+        id="rg_militar" 
+        name="rg_militar"
+        [(ngModel)]="policial.rg_militar" 
+        required
+        placeholder="XXXXX">
+    </div>
+
+    <div class="form-group">
+      <label for="cpf">CPF:</label>
+      <input 
+        type="text" 
+        id="cpf" 
+        name="cpf"
+        [(ngModel)]="policial.cpf" 
+        required
+        placeholder="XXX.XXX.XXX-XX">
+    </div>
+
+    <div class="form-group">
+      <label for="data_nascimento">Data de Nascimento:</label>
+      <input 
+        type="date" 
+        id="data_nascimento" 
+        name="data_nascimento"
+        [(ngModel)]="policial.data_nascimento" 
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="matricula">Matrícula:</label>
+      <input 
+        type="text" 
+        id="matricula" 
+        name="matricula"
+        [(ngModel)]="policial.matricula" 
+        required
+        placeholder="PM2024XXX">
+    </div>
+
+    <button type="submit" [disabled]="!form.form.valid || carregando">
+      {{ carregando ? 'Cadastrando...' : 'Cadastrar Policial' }}
+    </button>
+  </form>
+
+  <div *ngIf="mensagem" [class]="'mensagem ' + (sucesso ? 'sucesso' : 'erro')">
+    {{ mensagem }}
+  </div>
+</div>
